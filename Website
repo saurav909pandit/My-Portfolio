@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">YN.</div>
+        <div class="links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="mailto:your@email.com" class="cta-btn">Hire Me</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>I build <span class="gradient-text">digital experiences</span> that matter.</h1>
+        <p>Product Designer & Developer based in Brooklyn.</p>
+    </header>
+
+    <section id="work" class="bento-grid">
+        <div class="item large" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80');">
+            <div class="overlay"><h3>Project Alpha</h3></div>
+        </div>
+        <div class="item tall" style="background-color: #f3f3f3; color: black;">
+            <div class="content">
+                <h3>My Skills</h3>
+                <p>UI/UX, React, Motion Design, Brand Strategy.</p>
+            </div>
+        </div>
+        <div class="item wide" style="background-color: #1a1a1a;">
+            <div class="content">
+                <h3>Available for Freelance</h3>
+                <p>Q3 2026 — Let's talk.</p>
+            </div>
+        </div>
+        <div class="item small">
+            <div class="overlay"><h3>Beta App</h3></div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <p>© 2026 Your Name. Built with grit and caffeine.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+:root {
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --accent: #0070f3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Typography */
+h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; margin-bottom: 1rem; }
+.gradient-text { background: linear-gradient(90deg, #0070f3, #f81ce5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Navigation */
+nav { display: flex; justify-content: space-between; padding: 2rem 5%; align-items: center; }
+.cta-btn { background: var(--text); color: var(--bg); padding: 0.5rem 1.2rem; border-radius: 50px; text-decoration: none; font-weight: bold; }
+
+/* Hero */
+.hero { padding: 100px 5%; text-align: center; }
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1.5rem;
+    padding: 0 5% 100px 5%;
+}
+
+.item { 
+    border-radius: 24px; 
+    background-size: cover; 
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #333;
+}
+.item:hover { transform: scale(1.02); }
+
+.item.large { grid-column: span 2; grid-row: span 2; }
+.item.wide { grid-column: span 2; }
+.item.tall { grid-row: span 2; }
+
+.overlay { position: absolute; bottom: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); width: 100%; }
+.content { padding: 30px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bento-grid { grid-template-columns: repeat(1, 1fr); }
+    .item.large, .item.wide, .item.tall { grid-column: span 1; grid-row: span 1; }
+    h1 { font-size: 2.5rem; }
+}
+// Simple Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+});
+
+document.querySelectorAll('.item').forEach((el) => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "all 0.6s ease-out";
+    observer.observe(el);
+});
